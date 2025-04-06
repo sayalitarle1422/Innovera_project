@@ -11,7 +11,7 @@ import BookReader from "@/app/educationalplatform/student/components/BookReader"
 import VoiceNoteTaker from "./components/VoiceNoteTaker";
 import StudentQuiz from "./components/StudentQuiz";
 import AssignmentWriting from "./components/AssignmentWriting";
-
+import dynamic from "next/dynamic";
 type ModalType = "video" | "qa" | "book" | "voice" | "quiz" | "assignment" | null;
 
 interface User {
@@ -46,7 +46,13 @@ export default function StudentDashboard() {
 
   const openModal = useCallback((type: ModalType) => setActiveModal(type), []);
   const closeModal = useCallback(() => setActiveModal(null), []);
-
+  
+  const BookReader = dynamic(() => import("./components/BookReader"), { ssr: false });
+const VoiceNoteTaker = dynamic(() => import("./components/VoiceNoteTaker"), { ssr: false });
+const ViewVideo = dynamic(() => import("./components/ViewVideo"), { ssr: false });
+const QuestionAnswer = dynamic(() => import("./components/QuestionAnswer"), { ssr: false });
+const StudentQuiz = dynamic(() => import("./components/StudentQuiz"), { ssr: false });
+const AssignmentWriting = dynamic(() => import("./components/AssignmentWriting"), { ssr: false });
   const handleLogout = useCallback(() => {
     localStorage.removeItem("loggedInUser");
     router.push("/login");

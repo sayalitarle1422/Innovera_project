@@ -59,10 +59,7 @@ app.use("/api/score", scoreRoutes);
 app.get("/api/health", (req, res) => {
   res.status(200).json({ message: "✅ Server is running smoothly" });
 });
-app.use(express.static(path.join(__dirname, "/voicea/dest")));
-app.get('*', (req,res) =>{
-  res.sendFile(path.resolve(__dirname, "voicea", "dest", "index.html"));
-});
+
 app.use((req, res) => {
   console.warn(`❌ Route Not Found: ${req.originalUrl}`);
   res.status(404).json({ message: `❌ Route Not Found: ${req.originalUrl}` });

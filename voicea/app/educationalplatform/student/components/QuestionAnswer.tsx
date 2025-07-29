@@ -58,11 +58,11 @@ export default function QuestionAnswer() {
       });
 
       if (response.ok) {
-        alert("✅ Question submitted successfully!");
+        alert("Question submitted successfully!");
         setTranscribedText("");
       }
     } catch (error) {
-      console.error("❌ Error submitting question:", error);
+      console.error(" Error submitting question:", error);
     }
   };
 

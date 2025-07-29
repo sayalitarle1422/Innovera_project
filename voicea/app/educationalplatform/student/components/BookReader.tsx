@@ -6,7 +6,7 @@ import { Upload, Play, Pause, StopCircle } from "lucide-react";
 import { pdfjs } from "react-pdf";
 import * as pdfjsLib from "pdfjs-dist";
 
-// ✅ Fix PDF worker source
+//  Fix PDF worker source
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 export default function BookReader() {
@@ -16,7 +16,7 @@ export default function BookReader() {
   const [speechQueue, setSpeechQueue] = useState<SpeechSynthesisUtterance[]>([]);
   const [currentUtteranceIndex, setCurrentUtteranceIndex] = useState<number>(0);
 
-  // 📌 Handle File Upload
+  //  Handle File Upload
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -32,11 +32,11 @@ export default function BookReader() {
       };
       reader.readAsText(file);
     } else {
-      alert("❌ Please upload a PDF or TXT file.");
+      alert(" Please upload a PDF or TXT file.");
     }
   };
 
-  // 📌 Extract text from PDF
+  //  Extract text from PDF
   const extractTextFromPDF = async (file: File) => {
     try {
       const reader = new FileReader();
@@ -73,7 +73,7 @@ export default function BookReader() {
     }
   };
 
-  // 📌 Start Reading
+  // Start Reading
   const startReading = () => {
     if (!text) {
       alert("No text to read.");
@@ -103,7 +103,7 @@ export default function BookReader() {
     if (utterances.length > 0) speechSynthesis.speak(utterances[0]);
   };
 
-  // 📌 Pause Reading
+  //  Pause Reading
   const pauseReading = () => {
     if (isReading) {
       speechSynthesis.pause();
@@ -111,7 +111,7 @@ export default function BookReader() {
     }
   };
 
-  // 📌 Resume Reading
+  //  Resume Reading
   const resumeReading = () => {
     if (paused) {
       speechSynthesis.resume();
@@ -119,7 +119,7 @@ export default function BookReader() {
     }
   };
 
-  // 📌 Stop Reading
+  //  Stop Reading
   const stopReading = () => {
     speechSynthesis.cancel();
     setIsReading(false);
